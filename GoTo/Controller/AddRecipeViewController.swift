@@ -16,9 +16,9 @@ class AddRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let collectionVC = CollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-    let imagePicker = UIImagePickerController()
-    var imageData = Data()
-    var recipeImageSelected = false
+    private let imagePicker = UIImagePickerController()
+    private var imageData = Data()
+    private var recipeImageSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class AddRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         
 //MARK: - Save Image Method
     
-    func prepareForSaving(image: UIImage) {
+    private func prepareForSaving(image: UIImage) {
         guard let imageJpeg  = image.jpegData(compressionQuality: 0.7) else {
             fatalError("Could not save image jpeg data.")
         }
@@ -87,7 +87,7 @@ class AddRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     
 //MARK: - Alert Message Method
     
-    func displayAlertMessage(userMessage:String) {
+    public func displayAlertMessage(userMessage:String) {
         let alert = UIAlertController(title: "Error", message: userMessage, preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(okAction)

@@ -27,8 +27,6 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         loadRecipes()
     }
 
-
-
 //MARK: - Collection View Data Source
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -90,7 +88,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     
 //MARK: - Core Data Methods
     
-    func loadRecipes(with request: NSFetchRequest<RecipeData> = RecipeData.fetchRequest()) {
+    public func loadRecipes(with request: NSFetchRequest<RecipeData> = RecipeData.fetchRequest()) {
         do {
             recipes = try context.fetch(request)
             DispatchQueue.main.async {
@@ -101,7 +99,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         }
     }
 
-    func createRecipe(name: String, url: String, imageData: NSData, date: Date) {
+    public func createRecipe(name: String, url: String, imageData: NSData, date: Date) {
         let newItem = RecipeData(context: context)
         newItem.name = name
         newItem.urlString = url
@@ -118,7 +116,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         }
     }
 
-    func deleteRecipe(recipe: RecipeData) {
+    public func deleteRecipe(recipe: RecipeData) {
         context.delete(recipe)
         
         do {
@@ -167,7 +165,7 @@ extension CollectionViewController: UISearchBarDelegate {
 
 extension CollectionViewController {
     
-    func hideKeyboardWhenTappedAround() {
+    private func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CollectionViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)

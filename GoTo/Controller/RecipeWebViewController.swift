@@ -12,8 +12,8 @@ class RecipeWebViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var recipeWebView: WKWebView!
     let collectionVC = CollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-    var urlString = String()
-    var recipe: RecipeData?
+    public var urlString = String()
+    public var recipe: RecipeData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
